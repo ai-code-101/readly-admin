@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+/* Readly palette, taken from the Figma designs. */
+@theme {
+  --color-forest-950: #052e25;
+  --color-forest-900: #073d31;
+  --color-forest-800: #0b4a3b;
+  --color-forest-700: #11604d;
+  --color-forest-100: #dcebe4;
+  --color-forest-50: #eef5f1;
+  --color-cream-50: #fbf9f4;
+  --color-cream-100: #f4f1e8;
+  --color-cream-200: #ebe6d8;
+  --color-ink: #10231d;
+  --color-muted: #5f6f68;
+  --color-gold: #e3b23c;
+  --color-danger: #b42318;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-serif), ui-serif, Georgia, serif;
+}
+
+body {
+  background: var(--color-cream-100);
+  color: var(--color-ink);
+}
+
+@utility card {
+  @apply rounded-2xl border border-cream-200 bg-white;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+@utility btn-primary {
+  @apply btn bg-forest-800 text-white hover:bg-forest-700;
+}
+
+@utility btn-secondary {
+  @apply btn border border-forest-800 text-forest-800 hover:bg-forest-50;
+}
+
+@utility btn-danger {
+  @apply btn border border-danger/30 text-danger hover:bg-danger/5;
+}
+
+@utility input {
+  @apply w-full rounded-xl border border-cream-200 bg-cream-50 px-4 py-2.5 text-sm outline-none transition placeholder:text-muted/60 focus:border-forest-700 focus:bg-white focus:ring-2 focus:ring-forest-100;
+}
+
+@utility label {
+  @apply mb-1.5 block text-sm font-medium text-ink;
+}
+
+@utility hint {
+  @apply mt-1 text-xs text-muted;
+}
