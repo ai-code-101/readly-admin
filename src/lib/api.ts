@@ -26,6 +26,7 @@ export type Book = {
   wordCount: number;
   isFree: boolean;
   isTrending: boolean;
+  trendingOn: string | null;
   isStaffPick: boolean;
   isBookOfTheDay: boolean;
   status: "draft" | "published";
@@ -77,6 +78,21 @@ export type Stats = {
   categories: number;
   totalOpens: number;
   storageBytes: number;
+  activeSubscribers: number;
+  subscriptionsToday: number;
+  users: number;
+};
+
+export type Subscriber = {
+  userId: string;
+  phone: string;
+  joinedAt: string;
+  lastLoginAt: string | null;
+  periodStartsAt: string;
+  periodEndsAt: string;
+  activeNow: boolean;
+  totalSubscriptions: number;
+  booksInProgress: number;
 };
 
 export class ApiError extends Error {
@@ -123,6 +139,11 @@ export const api = {
     return request<Category>(`/categories/${id}/image`, { method: "PUT", body: fd });
   },
 
+  subscribers: (date: string) => request<{ date: string; items: Subscriber[] }>(`/subscribers?date=${date}`),
+  trending: (date: string) => request<{ date: string; today: string; items: Book[] }>(`/trending?date=${date}`),
+  setTrending: (id: string, date: string) => request<Book>(`/books/${id}/trending`, json("PUT", { date })),
+  removeTrending: (id: string) => request<Book>(`/books/${id}/trending`, json("PUT", { off: true })),
+
   books: (params: Record<string, string | number | undefined>) => {
     const qs = new URLSearchParams();
     for (const [k, v] of Object.entries(params)) if (v !== undefined && v !== "") qs.set(k, String(v));
@@ -165,6 +186,22 @@ export function formatBytes(n: number) {
 export function formatDate(s: string | null) {
   if (!s) return "—";
   return new Date(s).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
+
+/** Today's date in Kenya as YYYY-MM-DD. */
+export function nairobiToday() {
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Africa/Nairobi" }).format(new Date());
+}
+
+/** "254743410697" -> "0743 410 697" */
+export function prettyPhone(p: string) {
+  const local = p.startsWith("254") ? "0" + p.slice(3) : p;
+  return local.replace(/^(\d{4})(\d{3})(\d{3})$/, "$1 $2 $3");
+}
+
+export function formatDateTime(s: string | null) {
+  if (!s) return "—";
+  return new Date(s).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit", timeZone: "Africa/Nairobi" });
 }
 
 export const READER_URL = process.env.NEXT_PUBLIC_READER_URL ?? "http://localhost:3000";

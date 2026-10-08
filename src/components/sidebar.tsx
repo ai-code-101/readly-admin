@@ -9,6 +9,8 @@ const NAV = [
   { href: "/", label: "Dashboard", icon: "M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10" },
   { href: "/books", label: "Books", icon: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM20 17v4H6.5" },
   { href: "/categories", label: "Categories", icon: "M4 6h16M4 12h16M4 18h10" },
+  { href: "/trending", label: "Trending", icon: "M3 17l6-6 4 4 8-8M15 7h6v6" },
+  { href: "/subscribers", label: "Subscribers", icon: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" },
 ];
 
 export function Sidebar() {

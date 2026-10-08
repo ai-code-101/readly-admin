@@ -12,11 +12,17 @@ exposed to the browser.
 - **Upload a book**: drop an EPUB and the title, author, synopsis, language, page count and cover are read
   from it. You can override any field, upload your own cover, then **Publish** or **Save as draft**.
 - **Book details**: category, genre tag (the small label on cards), **rating (0–5)**, page count, language,
-  synopsis, and features: *Free book*, *Trending*, *Staff pick*, *Book of the day*.
+  synopsis, and features: *Free book*, *Trending today*, *Staff pick*, *Book of the day*.
 - **Edit**: replace the EPUB or cover, publish or unpublish, download the EPUB, delete the book.
 - **Books list**: search, filter by status and category, sort, paginate.
 - **Categories**: create, edit, reorder, delete, upload an image.
-- **Dashboard**: totals for books, free books, categories, opens and storage used.
+- **Subscribers**: readers with a Ksh 10/day subscription on any chosen day (Nairobi time): phone
+  number, active/expired, when they subscribed and when it expires, how many times they've subscribed,
+  books in progress.
+- **Trending**: pick the books shown in "What everyone is reading" on the platform home for today (or a
+  future day). Picks drop off automatically the next day, and can be removed at any time. With no picks,
+  the platform shows the most-read books.
+- **Dashboard**: active subscribers, new subscriptions today, readers, books, opens and storage used.
 
 ## Getting started
 

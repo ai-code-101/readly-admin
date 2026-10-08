@@ -21,10 +21,10 @@ export default function Dashboard() {
 
   const tiles = stats
     ? [
-        { label: "Books", value: stats.books, note: `${stats.publishedBooks} published · ${stats.draftBooks} drafts` },
-        { label: "Free books", value: stats.freeBooks, note: "Readable without a plan" },
-        { label: "Categories", value: stats.categories, note: "Shown in the reader" },
-        { label: "Book opens", value: stats.totalOpens, note: `Storage used: ${formatBytes(stats.storageBytes)}` },
+        { label: "Active subscribers", value: stats.activeSubscribers, note: `${stats.subscriptionsToday} new subscription${stats.subscriptionsToday === 1 ? "" : "s"} today`, href: "/subscribers" },
+        { label: "Readers", value: stats.users, note: "Verified phone numbers" },
+        { label: "Books", value: stats.books, note: `${stats.publishedBooks} published · ${stats.draftBooks} drafts · ${stats.freeBooks} free` },
+        { label: "Book opens", value: stats.totalOpens, note: `${stats.categories} categories · ${formatBytes(stats.storageBytes)} stored` },
       ]
     : [];
 
@@ -45,6 +45,9 @@ export default function Dashboard() {
                 <p className="text-sm text-muted">{t.label}</p>
                 <p className="mt-1 font-display text-4xl text-forest-800">{t.value.toLocaleString()}</p>
                 <p className="mt-1 text-xs text-muted">{t.note}</p>
+                {"href" in t && t.href && (
+                  <Link href={t.href} className="mt-2 inline-block text-xs font-semibold text-forest-700 hover:underline">View subscribers →</Link>
+                )}
               </>
             ) : (
               <div className="h-20 animate-pulse rounded-lg bg-cream-100" />

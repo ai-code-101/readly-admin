@@ -291,7 +291,7 @@ export function BookForm({ book: initial }: { book?: Book }) {
           <legend className="label">Features</legend>
           <div className="grid gap-3 sm:grid-cols-2">
             <Toggle checked={form.isFree} onChange={(v) => set("isFree", v)} title="Free book" desc="Readable without a subscription." />
-            <Toggle checked={form.isTrending} onChange={(v) => set("isTrending", v)} title="Trending" desc="Appears in “Trending Now”." />
+            <Toggle checked={form.isTrending} onChange={(v) => set("isTrending", v)} title="Trending today" desc="Shown in “What everyone is reading” today; drops off tomorrow." />
             <Toggle checked={form.isStaffPick} onChange={(v) => set("isStaffPick", v)} title="Staff pick" desc="Featured in Staff Picks." />
             <Toggle checked={form.isBookOfTheDay} onChange={(v) => set("isBookOfTheDay", v)} title="Book of the day" desc="Hero spot on the home page (only one at a time)." />
           </div>
